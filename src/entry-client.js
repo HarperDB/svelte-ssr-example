@@ -4,6 +4,6 @@ new App({
 	target: document.getElementById('app'),
 	hydrate: true,
 	props: {
-		initialPostData
-	}
-})
+		initialPostData,
+	},
+});

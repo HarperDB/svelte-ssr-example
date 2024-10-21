@@ -8,7 +8,7 @@
 	let newComment = "";
   
 	onMount(() => {
-	  const ws = new WebSocket(`ws://localhost:9926/Post/${initialPostData.id}`);
+	  const ws = new WebSocket(`ws://localhost:9926/Post/${post.id}`);
 	  ws.onmessage = event => {
 		const message = JSON.parse(event.data);
 		post.set(message.value);
@@ -23,7 +23,7 @@
 	  if (newComment.trim()) {
 		post.update(currentPost => {
 		  const newPost = { ...currentPost, comments: [...currentPost.comments, newComment] };
-		  fetch(window.location.pathname, {
+		  fetch(`http://localhost:9926/Post/${post.id}`, {
 			method: "PATCH",
 			headers: {
 			  "Content-Type": "application/json",
@@ -47,7 +47,7 @@
 	const deleteComment = async (index) => {
 	  post.update(currentPost => {
 		const newPost = { ...currentPost, comments: currentPost.comments.filter((_, i) => i !== index) };
-		fetch(window.location.pathname, {
+		fetch(`http://localhost:9926/Post/${post.id}`, {
 		  method: "PATCH",
 		  headers: {
 			"Content-Type": "application/json",

@@ -1,15 +1,21 @@
 {
-  "name": "svelte-ssr-example",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build:client": "vite build --ssrManifest --outDir dist/client",
-    "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
-    "build": "npm run build:client && npm run build:server"
-  },
-  "dependencies": {
-    "@sveltejs/vite-plugin-svelte": "^3.1.2",
-    "svelte": "^4.2.19",
-    "vite": "^5.4.9"
-  }
+	"name": "svelte-ssr-example",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build:client": "vite build --ssrManifest --outDir dist/client",
+		"build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
+		"build": "npm run build:client && npm run build:server",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"@harperdb/code-guidelines": "^0.0.1",
+		"@sveltejs/vite-plugin-svelte": "^3.1.2",
+		"svelte": "^4.2.19",
+		"vite": "^5.4.9"
+	},
+	"devDependencies": {
+		"prettier": "^3.3.3"
+	},
+	"prettier": "@harperdb/code-guidelines/prettier"
 }
