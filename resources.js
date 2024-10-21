@@ -12,13 +12,10 @@ if (!(await tables.Post.get("0"))) {
 
 const htmlPath = path.join(import.meta.dirname, 'dist/client/index.html');
 const templateHTML = fs.readFileSync(htmlPath, 'utf-8');
-const ssrManifestPath = path.join(import.meta.dirname, 'dist/client/.vite/ssr-manifest.json');
-const ssrManifest = fs.readFileSync(ssrManifestPath, 'utf-8');
+const serverEntry = await import('./dist/server/entry-server.js');
 
 async function renderPost(post) {
-	const render = (await import('./dist/server/entry-server.js')).render;
-
-	const rendered = render({ initialPostData: post }, ssrManifest);
+	const rendered = serverEntry.render({ initialPostData: post });
 
 	const html = templateHTML
 		.replace(`<!--app-head-->`, rendered.head ?? '')
